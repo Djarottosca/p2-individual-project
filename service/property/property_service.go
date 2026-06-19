@@ -21,6 +21,7 @@ type Service interface {
 	Update(userID, id string, p Property) (*Property, error)
 	Delete(userID, id string) error
 	ListMine(userID string) ([]Property, error)
+	SetStatus(id, status string) error
 }
 
 func NewService(logger *slog.Logger, repo Repository) Service {
@@ -122,4 +123,18 @@ func (s *service) Delete(userID, id string) error {
 // ListMine ngembaliin listing milik user yang lagi login.
 func (s *service) ListMine(userID string) ([]Property, error) {
 	return s.repo.FindByOwner(userID)
+}
+
+// SetStatus ngubah status properti, dipakai alur pembayaran.
+func (s *service) SetStatus(id, status string) error {
+	existing, err := s.repo.FindByID(id)
+	if err != nil {
+		return err
+	}
+	if existing == nil {
+		return errors.New("properti tidak ditemukan")
+	}
+	existing.Status = status
+	_, err = s.repo.Update(existing)
+	return err
 }
