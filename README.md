@@ -4,7 +4,7 @@ Sebuah backend service untuk ekosistem marketplace properti, dirancang untuk mem
 
 ## Tentang Dokumen Ini
 
-README ini bertindak sebagai blueprint teknis dan fungsional dari Property Marketplace API. Dokumen ini memetakan secara sistematis cakupan fitur, spesifikasi endpoint, desain model data, alur transaksi (payment flow), serta metodologi pengujian yang diterapkan. Tujuannya adalah memberikan konteks yang transparan bagi para penguji, kolaborator, maupun maintainer lanjutan mengenai arsitektur sistem dan rasionalisasi di balik setiap keputusan desain (Design Rationale).
+README ini bertindak sebagai blueprint teknis dan fungsional dari Property Marketplace API. Dokumen ini memetakan secara sistematis cakupan fitur, spesifikasi endpoint, desain model data, alur transaksi (payment flow), serta metodologi pengujian yang diterapkan. Tujuannya adalah memberikan konteks yang transparan bagi para penguji, kolaborator, maupun maintainer lanjutan mengenai arsitektur sistem dan rasionalisasi di balik setiap keputusan desain (Design Rationale). Deployment dokumen ini pada https://p2-individual-project-production.up.railway.app dan tautan export JSON https://web.postman.co/workspace/Kevin-Yusuf-Briliantama's-Works~982dc8fe-817c-4ce5-8663-932f52adcd8c/collection/55382287-46cf81ae-4f4f-4f86-a581-e4472f6ab820
 
 ## 1. Ringkasan Eksekutif Produk
 
