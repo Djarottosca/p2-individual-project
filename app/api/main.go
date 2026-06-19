@@ -9,10 +9,13 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
+	propctrl "p2-individual-project/app/api/controller/property"
 	userctrl "p2-individual-project/app/api/controller/user"
 	"p2-individual-project/app/api/router"
 	mailerrepo "p2-individual-project/repository/mailer"
+	proprepo "p2-individual-project/repository/property"
 	userrepo "p2-individual-project/repository/user"
+	propsvc "p2-individual-project/service/property"
 	usersvc "p2-individual-project/service/user"
 	"p2-individual-project/util/db"
 )
@@ -44,6 +47,11 @@ func main() {
 	userService := usersvc.NewService(logger, userRepository, mailer, os.Getenv("JWT_SECRET"))
 	userController := userctrl.NewController(userService)
 
+	// ngerakit lapisan property
+	propertyRepository := proprepo.NewPropertyRepository(conn)
+	propertyService := propsvc.NewService(logger, propertyRepository)
+	propertyController := propctrl.NewController(propertyService)
+
 	// setup echo
 	e := echo.New()
 	e.Validator = &CustomValidator{validator: validator.New()}
@@ -51,7 +59,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// daftar route
-	router.RegisterPath(e, userController)
+	router.RegisterPath(e, os.Getenv("JWT_SECRET"), userController, propertyController)
 
 	port := os.Getenv("PORT")
 	if port == "" {
